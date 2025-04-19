@@ -1,0 +1,63 @@
+/* Color of the links BEFORE scroll */
+.navbar-scroll .nav-link,
+.navbar-scroll .navbar-toggler-icon,
+.navbar-scroll .navbar-brand {
+  color: #fff;
+}
+
+/* Color of the links AFTER scroll */
+.navbar-scrolled .nav-link,
+.navbar-scrolled .navbar-toggler-icon,
+.navbar-scrolled .navbar-brand {
+  color: #fff;
+}
+
+/* Color of the navbar AFTER scroll */
+.navbar-scroll,
+.navbar-scrolled {
+  background-color: #cbbcb1;
+}
+
+.mask-custom {
+  backdrop-filter: blur(5px);
+  background-color: rgba(255, 255, 255, .15);
+}
+
+.navbar-brand {
+  font-size: 1.75rem;
+  letter-spacing: 3px;
+}
+body {
+    font-family: "Roboto", sans-serif;
+    position: relative;
+    margin: 0;
+    padding: 0;
+}
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    background-image: url('./image/background8.jpg');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.9;
+    z-index: -1;
+}
+.log{
+    color: #5e9693 !important;
+    font-size: 1.5rem !important;
+}
+.reg{
+    color: #E16A54 !important;
+    font-size: 1.5rem !important;
+}
+.apbud > span{
+    font-size: 1.5rem !important;
+}
+.sec *{
+    color: #FFF2CC !important;
+}
+
