@@ -60,4 +60,12 @@ body::before {
 .sec *{
     color: #FFF2CC !important;
 }
+.reg p,label{
+    color: #FFF2CC !important;
+}
+.reg label{
+    font-size: 0.8rem;
+}
+
+
 
