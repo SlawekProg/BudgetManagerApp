@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="preload" as="image" href="./image/background.jpg">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Balance View</title>
@@ -11,10 +12,10 @@
 </head>
 
 <body style="margin: 0;">
-    <header>
+    <header class="pb-4">
         <nav class="navbar navbar-expand-xl navbar-light fixed-top mask-custom shadow-0">
             <div class="container">
-                <a class="navbar-brand me-5 pe-3" href="#!">
+                <a class="navbar-brand apbud" href="#!">
                     <span style="color: #5e9693;">Aplikacja</span>
                     <span style="color: #fff;"> budżetowa</span>
                 </a>
@@ -73,7 +74,7 @@
         </nav>  
     </header>
 
-    <main id="dodajWydatek">
+    <main id="dodajPrzychod">
         <section class="pt-3 mt-5">
             <div class="container h-100">
                 <div class="row d-flex justify-content-center align-items-center h-100">
@@ -101,7 +102,7 @@
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="black" class="bi bi-calendar3" viewBox="0 0 16 16">
                                                     <path d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2M1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857z"/>
                                                     <path d="M6.5 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2"/>
-                                                  </svg>
+                                                </svg>
                                             </span>
                                             <input type="date" id="date" class="form-control form-control border-start-0">
                                         </div>
@@ -109,7 +110,7 @@
                                             <span class="input-group-text bg-white border-end-0">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="black" class="bi bi-caret-down" viewBox="0 0 16 16">
                                                     <path d="M3.204 5h9.592L8 10.481zm-.753.659 4.796 5.48a1 1 0 0 0 1.506 0l4.796-5.48c.566-.647.106-1.659-.753-1.659H3.204a1 1 0 0 0-.753 1.659"/>
-                                                  </svg>
+                                                </svg>
                                             </span>
                                             <select class="custom-select form-control border-start-0" id="inputGroupSelect02">
                                               <option selected>Rodzaj Przychodu</option>
@@ -130,7 +131,7 @@
                                             <input type="text" id="form3Example1c" class="form-control border-start-0" placeholder="Komentarz" />
                                             </div>
                                         </div>
-                                        <div class="d-flex justify-content-center mx-4 mt-5 mb-lg-4">
+                                        <div class="d-flex justify-content-center mt-5 mb-lg-4">
                                             <button type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-lg" onclick="location.href='home.html'">Dodaj</button>
                                         </div>
                                     </form>
