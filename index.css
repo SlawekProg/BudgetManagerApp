@@ -32,6 +32,9 @@
   color: #FFF2CC !important;
   font-size: 0.9rem !important;
 }
+.navHome p{
+  line-height: 0.3;
+}
 body {
     font-family: "Roboto", sans-serif;
     position: relative;
@@ -104,6 +107,12 @@ body::before {
   background-color:#116A7B  ;
   border: 0;
 }
+.modbtx{
+  width: 30px !important;
+}
+#modb p{
+  color: #333 !important;
+}
 canvas{
   background-color:rgb(238, 229, 188);
 }
@@ -127,23 +136,31 @@ canvas{
   color: #535252 !important;
 }
 .ukryta-lista {
-  display: none;
-  top: 100%; /* wyświetla się poniżej przycisku */
+  top: 100%;
   left: 50%;
   transform: translateX(-50%);
   width: 100%;
-  max-height: 450px;
-  overflow-y: auto;
+  max-height: 0;
+  overflow-y: hidden;
+  overflow-x: hidden;
   z-index: 1000;
   background-color: rgb(238, 229, 188);
   color: #333;
   border: 1px solid #ccc;
   border-radius: 8px;
-  padding: 10px;
+  padding: 0;
   box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  opacity: 0;
+  transition: 
+    max-height 0.5s ease-in-out,
+    padding 0.3s ease-in-out,
+    opacity 0.3s ease-in-out;
 }
 .pokazana {
-  display: block;
+  max-height: 450px;
+  overflow-y: auto; /* scroll aktywowany po rozwinięciu */
+  opacity: 1;
+  padding: 10px;
 }
 @media (max-width:1200px) {
   .navbar-collapse {
