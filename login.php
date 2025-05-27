@@ -1,3 +1,10 @@
+<?php
+session_start();
+require_once 'function.php';
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {  
+    login_form_check_and_log();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,10 +36,10 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto d-flex flex-row">
                     <li class="nav-item me-3 me-lg-0">
-                        <a class="nav-link reg" href="./register.html">Rejestracja</a>
+                        <a class="nav-link reg" href="./register.php">Rejestracja</a>
                     </li>
                     <li class="nav-item me-3 me-lg-0">
-                        <a class="nav-link log" href="./login.html">Logowanie</a>
+                        <a class="nav-link log" href="./login.php">Logowanie</a>
                     </li>
                 </ul>
             </div>
@@ -50,7 +57,7 @@
                 <div class="row justify-content-center">
                   <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
                     <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-0">Logowanie</p>
-                    <form class="mx-1 mx-md-4">
+                    <form class="mx-1 mx-md-4" method="POST">
                         <div class="mb-4">
                           <div class="input-group">
                             <span class="input-group-text bg-white border-end-0">
@@ -58,8 +65,9 @@
                                 <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
                               </svg>
                             </span>
-                            <input type="text" id="form3Example1c" class="form-control border-start-0" placeholder="Imię" />
+                            <input type="text" id="form3Example1c" class="form-control border-start-0" placeholder="Login" name="login" value="<?php remembering_entered_logiin(); ?>" />
                           </div>
+                          <?php err_login();?>
                         </div>
                         <div class="mb-4">
                           <div class="input-group">
@@ -68,11 +76,12 @@
                                 <path d="M8 1a4 4 0 0 0-4 4v3H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1h-1V5a4 4 0 0 0-4-4zm-3 4a3 3 0 1 1 6 0v3H5V5zm3 4a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
                               </svg>
                             </span>
-                            <input type="password" id="form3Example4c" class="form-control border-start-0" placeholder="Hasło"/>
+                            <input type="password" id="form3Example4c" class="form-control border-start-0" placeholder="Hasło" name="haslo"/>
                           </div>
+                          <?php err_password();?>
                         </div>
                         <div class="d-flex justify-content-center mt-5 mb-lg-4">
-                          <button type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-lg" onclick="location.href='home.html'">Login</button>
+                          <button data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-lg" type="submit">Login</button>
                         </div>
                     </form>
                   </div>
