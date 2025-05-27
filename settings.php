@@ -1,3 +1,10 @@
+<?php
+    session_start();
+    if(!isset($_SESSION['zalogowany'])){
+        header('Location: index.html');
+        exit();
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,12 +12,8 @@
     <link rel="preload" as="image" href="image/background.jpg">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bilans</title>
+    <title>Settings</title>
     <link rel="stylesheet" href="index.css">
-    <script src="https://www.gstatic.com/charts/loader.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/@coreui/coreui-pro@5.10.0/dist/js/coreui.bundle.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
 </head>
@@ -19,7 +22,7 @@
     <header class="pb-4">
         <nav class="navbar navbar-expand-xl navbar-light fixed-top mask-custom shadow-0">
             <div class="container">
-                <a class="navbar-brand apbud " href="#!">
+                <a class="navbar-brand apbud ">
                     <span style="color: #5e9693;">Aplikacja</span>
                     <span style="color: #fff;"> Budżetowa</span>
                 </a>
@@ -30,14 +33,14 @@
                 <div class="collapse navbar-collapse pt-2" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto navHome">
                         <li class="nav-item ">
-                            <a class="nav-link border-bottom" href="./home.html">
+                            <a class="nav-link border-bottom" href="./home.php">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" class="bi bi-house-door mb-2 me-2" viewBox="0 0 16 16">
                                     <path d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4z"/>
                                 </svg>Strona Główna
                             </a>  
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link border-bottom" href="./addExpenses.html">
+                            <a class="nav-link border-bottom" href="./addExpenses.php">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" class="bi bi-cart-plus mb-2 me-2" viewBox="0 0 16 16">
                                     <path d="M9 5.5a.5.5 0 0 0-1 0V7H6.5a.5.5 0 0 0 0 1H8v1.5a.5.5 0 0 0 1 0V8h1.5a.5.5 0 0 0 0-1H9z"/>
                                     <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1zm3.915 10L3.102 4h10.796l-1.313 7zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0m7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/>
@@ -45,7 +48,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link border-bottom" href="./addIncomes.html">
+                            <a class="nav-link border-bottom" href="./addIncomes.php">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" class="bi bi-cash-stack mb-2 me-2" viewBox="0 0 16 16">
                                     <path d="M1 3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1zm7 8a2 2 0 1 0 0-4 2 2 0 0 0 0 4"/>
                                     <path d="M0 5a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1zm3 0a2 2 0 0 1-2 2v4a2 2 0 0 1 2 2h10a2 2 0 0 1 2-2V7a2 2 0 0 1-2-2z"/>
@@ -53,14 +56,14 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link border-bottom" href="./balanceView.html">
+                            <a class="nav-link border-bottom" href="./balanceView.php">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" class="bi bi-graph-up-arrow mb-2 me-2" viewBox="0 0 16 16">
                                     <path fill-rule="evenodd" d="M0 0h1v15h15v1H0zm10 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0V4.9l-3.613 4.417a.5.5 0 0 1-.74.037L7.06 6.767l-3.656 5.027a.5.5 0 0 1-.808-.588l4-5.5a.5.5 0 0 1 .758-.06l2.609 2.61L13.445 4H10.5a.5.5 0 0 1-.5-.5"/>
                                 </svg>Bilans
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link border-bottom" href="./settings.html">
+                            <a class="nav-link border-bottom" href="./settings.php">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" class="bi bi-gear mb-2 me-2" viewBox="0 0 16 16">
                                     <path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492M5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0"/>
                                     <path d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115z"/>
@@ -71,7 +74,7 @@
                     <ul class="navbar-nav d-flex flex-row">
                         <li class="nav-item me-3 me-lg-0 navHome mt-3 pe-2">
                             <p>Użytkownik:</p>
-                            <p>Władyslawa</p>
+                            <p><?php echo htmlspecialchars($_SESSION['username']); ?></p>
                         </li>
                         <li class="nav-item me-3 me-lg-0">
                             <a class="nav-link log" href="./index.html">Wyloguj</a>
@@ -82,147 +85,10 @@
         </nav>  
     </header>
 
-    <main id="bilans" class="overflow-auto mt-5 mb-5" style="height: calc(100vh - 120px - 100px);">
-        <section class="">
-            <div class="container px-4 py-5" id="featured-3">
-               <div class="row d-flex justify-content-center align-items-center">
-                    <div class="col-md-12">
-                        <h2 class="pb-2 border-bottom">Bilans Finansowy</h2> 
-                        <p>Poniżej bilans miesięczny, ustawiając daty otrzymasz bilans z danego okresu.</p>
-                    </div>
-                    <div class="col-ld-6 col-md-12 input-group">
-                        <span class="input-group-text bg-white border-end-0 px-1">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="black" class="bi bi-calendar3" viewBox="0 0 16 16">
-                                <path d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2M1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857z"/>
-                                <path d="M6.5 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2"/>
-                            </svg>
-                        </span>
-                        <input type="date" id="date" class="form-control form-control border-start-0 me-1">
-                        <span class="input-group-text bg-white border-end-0 px-1">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="black" class="bi bi-calendar3" viewBox="0 0 16 16">
-                                <path d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2M1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857z"/>
-                                <path d="M6.5 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2"/>
-                            </svg>
-                        </span>
-                        <input type="date" id="date" class="form-control form-control border-start-0">
-                    </div>
-                </div>
-                <div class="row g-4 py-3 row-cols-1 row-cols-lg-3">
-                  <div class="feature col">
-                    <div class="text-bg-primary fs-2 rounded position-relative" style="height: auto;">
-                        <div class="d-flex justify-content-center mb-2">
-                          <button class="btn btn-light" onclick="toggleList()">Szczegóły Przychodów</button>
-                        </div>
-                        <div id="listaDanych" class="ukryta-lista position-absolute">
-                          <ul class="mb-0">
-                            <li>Wynagrodzenie
-                                <ul>
-                                    <li>pozycja1</li>
-                                    <li>pozycja2</li>
-                                </ul> 
-                            </li>
-                            <li>Premia
-                                <ul>
-                                    <li>pozycja1</li>
-                                    <li>pozycja2</li>
-                                </ul> 
-                            </li>
-                            <li>Sprzedaż Allegro
-                                <ul>
-                                    <li>pozycja1</li>
-                                    <li>pozycja2</li>
-                                </ul> 
-                            </li>
-                            <li>Sprzedaż OLX
-                                <ul>
-                                    <li>pozycja1</li>
-                                    <li>pozycja2</li>
-                                </ul> 
-                            </li>
-                            <li>Inne
-                                <ul>
-                                    <li>pozycja1</li>
-                                    <li>pozycja2</li>
-                                </ul> 
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                    <h3 class="fs-2 text-body-emphasis">Przychody</h3>
-                    <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.</p>
-                    <div id="piechart2"></div>
-                  </div>
-                  <div class="feature col">
-                    <div class="text-bg-primary fs-2 rounded position-relative" style="height: auto;">
-                        <div class="d-flex justify-content-center mb-2">
-                          <button class="btn btn-light" onclick="toggleList2()">Szczegóły Wydatków</button>
-                        </div>
-                        <div id="listaDanych2" class="ukryta-lista position-absolute">
-                          <ul class="mb-0">
-                            <li>Wynagrodzenie
-                                <ul>
-                                    <li>pozycja1</li>
-                                    <li>pozycja2</li>
-                                </ul> 
-                            </li>
-                            <li>Premia
-                                <ul>
-                                    <li>pozycja1</li>
-                                    <li>pozycja2</li>
-                                </ul> 
-                            </li>
-                            <li>Sprzedaż Allegro
-                                <ul>
-                                    <li>pozycja1</li>
-                                    <li>pozycja2</li>
-                                </ul> 
-                            </li>
-                            <li>Sprzedaż OLX
-                                <ul>
-                                    <li>pozycja1</li>
-                                    <li>pozycja2</li>
-                                </ul> 
-                            </li>
-                            <li>Inne
-                                <ul>
-                                    <li>pozycja1</li>
-                                    <li>pozycja2</li>
-                                </ul> 
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                    <h3 class="fs-2 text-body-emphasis">Wydatki</h3>
-                    <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.</p>
-                    <div id="piechart1"></div>
-                  </div>
-                  <div class="feature col">
-                    <div class="text-bg-primary fs-2 rounded position-relative" style="height: auto;">
-                        <div class="d-flex justify-content-center mb-2">
-                          <button class="btn btn-light" onclick="toggleList3()">Szczegóły Podsumowania</button>
-                        </div>
-                        <div id="listaDanych3" class="ukryta-lista position-absolute">
-                          <ul class="mb-0">
-                            <li>Pozycja 1</li>
-                            <li>Pozycja 2</li>
-                            <li>Pozycja 3</li>
-                            <li>Pozycja 4</li>
-                            <li>Pozycja 5</li>
-                            <li>Pozycja 6</li>
-                            <li>Pozycja 7</li>
-                            <li>Pozycja 8</li>
-                          </ul>
-                        </div>
-                      </div>
-                    <h3 class="fs-2 text-body-emphasis">Podsumowanie</h3>
-                    <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.</p>
-                    <div id="chart">
-                        <canvas id="chartjs-line" height="100"></canvas>
-                    </div>
-                  </div>
-                </div>
-            </div>
-        </section>         
+    <main>
+        <section>
+            
+        </section>
     </main>
 
     <footer class="py-1 my-2 fixed-bottom">
@@ -250,14 +116,14 @@
                 </svg>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link px-2 text-light">Website</a
-            ></li>
+                <a href="#" class="nav-link px-2 text-light">Website</a>
+            </li>
           </ul>
           <p class="text-center text-light">© Sławomir Banaś</p>
         </div>
       </footer>
 
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
     crossorigin="anonymous"></script>

@@ -1,26 +1,35 @@
+<?php
+    session_start();
+    if(!isset($_SESSION['zalogowany'])){
+        header('Location: index.html');
+        exit();
+    }
+    require_once 'function.php';
+    add_user_income_toDB();
+?>
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <base href="/BudgetManagerApp/">
-    <link rel="preload" as="image" href="image/background.jpg">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dodaj Wydatek</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="index.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.2/mdb.min.css" rel="stylesheet"/>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
-</head>
+    <head>
+        <base href="/BudgetManagerApp/">
+        <link rel="preload" as="image" href="image/background.jpg">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Dodaj Przychod</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="index.css">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.2/mdb.min.css" rel="stylesheet"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+    </head>
 
 <body style="margin: 0;">
     <header class="pb-4">
         <nav class="navbar navbar-expand-xl navbar-light fixed-top mask-custom shadow-0">
             <div class="container">
-                <a class="navbar-brand apbud " href="#!">
+                <a class="navbar-brand apbud ">
                     <span class="me-2" style="color: #5e9693;">Aplikacja</span>
                     <span style="color: #fff;">Budżetowa</span>
                 </a>
@@ -31,14 +40,14 @@
                 <div class="collapse navbar-collapse pt-2" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto navHome">
                         <li class="nav-item ">
-                            <a class="nav-link border-bottom" href="./home.html">
+                            <a class="nav-link border-bottom" href="./home.php">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" class="bi bi-house-door mb-2 me-2" viewBox="0 0 16 16">
                                     <path d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4z"/>
                                 </svg>Strona Główna
                             </a>  
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link border-bottom" href="./addExpenses.html">
+                            <a class="nav-link border-bottom" href="./addExpenses.php">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" class="bi bi-cart-plus mb-2 me-2" viewBox="0 0 16 16">
                                     <path d="M9 5.5a.5.5 0 0 0-1 0V7H6.5a.5.5 0 0 0 0 1H8v1.5a.5.5 0 0 0 1 0V8h1.5a.5.5 0 0 0 0-1H9z"/>
                                     <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1zm3.915 10L3.102 4h10.796l-1.313 7zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0m7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/>
@@ -46,7 +55,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link border-bottom" href="./addIncomes.html">
+                            <a class="nav-link border-bottom" href="./addIncomes.php">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" class="bi bi-cash-stack mb-2 me-2" viewBox="0 0 16 16">
                                     <path d="M1 3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1zm7 8a2 2 0 1 0 0-4 2 2 0 0 0 0 4"/>
                                     <path d="M0 5a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1zm3 0a2 2 0 0 1-2 2v4a2 2 0 0 1 2 2h10a2 2 0 0 1 2-2V7a2 2 0 0 1-2-2z"/>
@@ -54,14 +63,14 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link border-bottom" href="./balanceView.html">
+                            <a class="nav-link border-bottom" href="./balanceView.php">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" class="bi bi-graph-up-arrow mb-2 me-2" viewBox="0 0 16 16">
                                     <path fill-rule="evenodd" d="M0 0h1v15h15v1H0zm10 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0V4.9l-3.613 4.417a.5.5 0 0 1-.74.037L7.06 6.767l-3.656 5.027a.5.5 0 0 1-.808-.588l4-5.5a.5.5 0 0 1 .758-.06l2.609 2.61L13.445 4H10.5a.5.5 0 0 1-.5-.5"/>
                                 </svg>Bilans
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link border-bottom" href="./settings.html">
+                            <a class="nav-link border-bottom" href="./settings.php">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" class="bi bi-gear mb-2 me-2" viewBox="0 0 16 16">
                                     <path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492M5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0"/>
                                     <path d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115z"/>
@@ -72,7 +81,7 @@
                     <ul class="navbar-nav d-flex flex-row">
                         <li class="nav-item me-3 me-lg-0 navHome mt-3 pe-2">
                             <p>Użytkownik:</p>
-                            <p>Władyslawa</p>
+                            <p><?php echo htmlspecialchars($_SESSION['username']); ?></p>
                         </li>
                         <li class="nav-item me-3 me-lg-0">
                             <a class="nav-link log" href="./index.html">Wyloguj</a>
@@ -83,7 +92,7 @@
         </nav>  
     </header>
 
-    <main id="dodajWydatek">
+    <main id="dodajPrzychod">
         <section class="pt-3 mt-5">
             <div class="container h-100">
                 <div class="row d-flex justify-content-center align-items-center h-100">
@@ -92,8 +101,8 @@
                             <div class="card-body p-md-5">
                                 <div class="row justify-content-center">
                                     <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
-                                    <p class="text-center h1 fw-bold mb-1 mx-1 mx-md-4 mt-0 mb-5">Dodaj Wydatek</p>
-                                    <form class="mx-1 mx-md-4">
+                                    <p class="text-center h1 fw-bold mb-1 mx-1 mx-md-4 mt-0 mb-5">Dodaj Przychód</p>
+                                    <form class="mx-1 mx-md-4" method="post">
                                         <div class="mb-4">
                                             <div class="input-group">
                                                 <span class="input-group-text bg-white border-end-0">
@@ -103,33 +112,35 @@
                                                         <path d="M8 13.5a5.5 5.5 0 1 1 0-11 5.5 5.5 0 0 1 0 11m0 .5A6 6 0 1 0 8 2a6 6 0 0 0 0 12"/>
                                                     </svg>
                                                 </span>
-                                                <input type="text" id="form3Example1c" class="form-control border-start-0" placeholder="Kwota" />
+                                                <input type="text" id="amount" class="form-control border-start-0" placeholder="Kwota" name="amount" value="<?php remembering_entered_amount();?>" />
+                                            </div>
+                                            <?php err_entered_amount();?>
+                                        </div>
+                                        <div class="mb-4">
+                                            <div class="input-group">
+                                                <span class="input-group-text bg-white border-end-0">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="black" class="bi bi-calendar3" viewBox="0 0 16 16">
+                                                        <path d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2M1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857z"/>
+                                                        <path d="M6.5 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2"/>
+                                                    </svg>
+                                                </span>
+                                                <input type="date" id="date" class="form-control form-control border-start-0" name="date" value="<?php remembering_entered_date() ?>">
                                             </div>
                                         </div>
-                                        <div class="input-group mb-4">
-                                            <span class="input-group-text bg-white border-end-0">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="black" class="bi bi-calendar3" viewBox="0 0 16 16">
-                                                    <path d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2M1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857z"/>
-                                                    <path d="M6.5 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2"/>
-                                                </svg>
-                                            </span>
-                                            <input type="date" id="date" class="form-control form-control border-start-0">
-                                        </div>
-                                        <div class="input-group mb-4">
-                                            <span class="input-group-text bg-white border-end-0">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="black" class="bi bi-caret-down" viewBox="0 0 16 16">
-                                                    <path d="M3.204 5h9.592L8 10.481zm-.753.659 4.796 5.48a1 1 0 0 0 1.506 0l4.796-5.48c.566-.647.106-1.659-.753-1.659H3.204a1 1 0 0 0-.753 1.659"/>
-                                                </svg>
-                                            </span>
-                                            <select class="custom-select form-control border-start-0" id="inputGroupSelect02">
-                                              <option selected>Rodzaj wydatku</option>
-                                              <option value="1">Rachunki</option>
-                                              <option value="2">Żywność</option>
-                                              <option value="3">Ubrania</option>
-                                              <option value="3">Hobby</option>
-                                              <option value="3">Inny</option>
-                                            </select>
-                                        </div>
+                                        <div class="mb-4">
+                                            <div class="input-group">
+                                                <span class="input-group-text bg-white border-end-0">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="black" class="bi bi-caret-down" viewBox="0 0 16 16">
+                                                        <path d="M3.204 5h9.592L8 10.481zm-.753.659 4.796 5.48a1 1 0 0 0 1.506 0l4.796-5.48c.566-.647.106-1.659-.753-1.659H3.204a1 1 0 0 0-.753 1.659"/>
+                                                    </svg>
+                                                </span>
+                                                <select class="custom-select form-control border-start-0" id="inputGroupSelect02" name="income_type">
+                                                <option value="" selected disabled hidden>Wybierz rodzaj przychodu</option>
+                                                    <?php load_income_type_fromDB();?>
+                                                </select>
+                                            </div>
+                                            <?php err_entered_income();?>
+                                         </div>
                                         <div class="mb-4">
                                             <div class="input-group">
                                                 <span class="input-group-text bg-white border-end-0">
@@ -138,42 +149,45 @@
                                                         <path d="M3 8.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5m0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5m0-5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5z"/>
                                                     </svg>
                                                 </span>
-                                            <input type="text" id="form3Example1c" class="form-control border-start-0" placeholder="Komentarz" />
+                                            <input type="text" id="form3Example1c" class="form-control border-start-0" placeholder="Komentarz" name="comment"  value="<?php remembering_entered_comment() ?>"/>
                                             </div>
+                                            <?php err_entered_comment();?>
                                         </div>
                                         <div class="d-flex justify-content-center mt-5 mb-lg-4">
-                                            <button type="button" class="btn btn-primary btn-lg" data-mdb-toggle="modal" data-mdb-target="#exampleModalLong">Dodaj</button>
+                                            <button type="submit" class="btn btn-primary btn-lg">Dodaj</button>
                                         </div>
-                                        <div class="modal fade" id="exampleModalLong" tabindex="-1" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                                        <!--
+                                        <div class="modal fade" id="exampleModalLong2" tabindex="-1" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                                             <div class="modal-dialog" role="document">
                                               <div class="modal-content">
                                                 <div class="modal-header">
-                                                  <h5 class="modal-title" id="exampleModalLongTitle">Chcesz dodać wydatek</h5>
+                                                  <h5 class="modal-title" id="exampleModalLongTitle">Chcesz dodać przychód</h5>
                                                   <button type="button" class="btn-close modbtx" data-mdb-dismiss="modal" aria-label="Close"></button>
                                                 </div>
                                                 <div id="modb" class="modal-body">
                                                   <ol>
                                                     <li>
-                                                        <p>Kwota: 200 </p>
+                                                        <p>Kwota: 500 </p>
                                                     </li>
                                                     <li>
                                                         <p>W dniu: 20.05.2025 </p>
                                                     </li>
                                                     <li>
-                                                        <p>Rorzaj wydatku: Wycieczka </p>
+                                                        <p>Rorzaj Przychodu: Sprzedaz OLX </p>
                                                     </li>
                                                     <li>
-                                                        <p>Komentarz: Paliwo i wejściówki </p>
+                                                        <p>Komentarz: Konsola XBOX </p>
                                                     </li>
                                                 </ol>
                                                 </div>
                                                 <div class="modal-footer">
                                                   <button type="button" class="btn btn-secondary modbt" data-mdb-dismiss="modal">Popraw</button>
-                                                  <button type="button" class="btn btn-primary modbt">Dodaj Wydatek</button>
+                                                  <button type="button" class="btn btn-primary modbt">Dodaj Przychód</button>
                                                 </div>
                                               </div>
                                             </div>
                                           </div>
+                                            -->
                                     </form>
                                     </div>
                                 </div>
