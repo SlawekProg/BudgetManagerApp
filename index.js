@@ -10,8 +10,20 @@ function drawCharts(){
         console.error('Błąd z API:', data.error);
         return;
       }
+      // Sprawdzenie czy dane nie są puste i wczytanie domyślnych danych
+        if (!data.incomes || data.incomes.length <= 1) {
+            data.incomes = [['Kategoria', 'Kwota'], ['Brak danych', 1]];
+        }
+
+        if (!data.expenses || data.expenses.length <= 1) {
+            data.expenses = [['Kategoria', 'Kwota'], ['Brak danych', 1]];
+        }
+
+        // Teraz możemy tworzyć DataTable
+        const incomesData = google.visualization.arrayToDataTable(data.incomes);
+        const expensesData = google.visualization.arrayToDataTable(data.expenses);
+
 //piechart incomes
-      const incomesData = google.visualization.arrayToDataTable(data.incomes);
       var incomesOptions = {
         title: 'Przychody',
         height: 300,
@@ -22,7 +34,6 @@ function drawCharts(){
       const incomesChart = new google.visualization.PieChart(document.getElementById('incomesPiechart'));
       incomesChart.draw(incomesData, incomesOptions);
 //piechart expenses
-      const expensesData = google.visualization.arrayToDataTable(data.expenses);
       var expensesOptions = {
         title: 'Przychody',
         height: 300,
